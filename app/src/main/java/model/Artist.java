@@ -21,6 +21,13 @@ public class Artist {
     @Expose
     private String href;
 
+    public Artist(String id,String name,String website,String href){
+        this.id = id;
+        this.name = name;
+        this.website = website;
+        this.href = href;
+    }
+
     public String getId() {
         return id;
     }
