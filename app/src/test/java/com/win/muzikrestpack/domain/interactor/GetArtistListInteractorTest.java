@@ -1,5 +1,11 @@
 package com.win.muzikrestpack.domain.interactor;
 
+import com.win.muzikrestpack.domain.executor.Executor;
+import com.win.muzikrestpack.domain.executor.MainThread;
+import com.win.muzikrestpack.domain.interactors.GetArtistListInteractor;
+import com.win.muzikrestpack.domain.interactors.impl.GetArtistListInteractorImpl;
+import com.win.muzikrestpack.domain.model.Artist;
+import com.win.muzikrestpack.domain.repository.ArtistRepository;
 import com.win.muzikrestpack.threading.TestMainThread;
 
 import org.junit.Before;
@@ -11,13 +17,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.executor.Executor;
-import domain.executor.MainThread;
-import domain.interactors.GetArtistListInteractor;
-import domain.interactors.impl.GetArtistListInteractorImpl;
-import domain.interactors.repository.ArtistRepository;
 import io.reactivex.Observable;
-import model.Artist;
 
 import static org.mockito.Mockito.when;
 

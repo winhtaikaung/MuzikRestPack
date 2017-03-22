@@ -1,7 +1,7 @@
 package com.win.muzikrestpack.threading;
 
 
-import domain.executor.MainThread;
+import com.win.muzikrestpack.domain.executor.MainThread;
 
 /**
  * Created by dmilicic on 1/8/16.

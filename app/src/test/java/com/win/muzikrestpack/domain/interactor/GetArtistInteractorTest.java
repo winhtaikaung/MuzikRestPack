@@ -8,13 +8,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import domain.executor.Executor;
-import domain.executor.MainThread;
-import domain.interactors.GetArtistInteractor;
-import domain.interactors.impl.GetArtistInteractorImpl;
-import domain.interactors.repository.ArtistRepository;
+import com.win.muzikrestpack.domain.executor.Executor;
+import com.win.muzikrestpack.domain.executor.MainThread;
+import com.win.muzikrestpack.domain.interactors.GetArtistInteractor;
+import com.win.muzikrestpack.domain.interactors.impl.GetArtistInteractorImpl;
+import com.win.muzikrestpack.domain.repository.ArtistRepository;
 import io.reactivex.Observable;
-import model.Artist;
+import com.win.muzikrestpack.domain.model.Artist;
 
 import static org.mockito.Mockito.when;
 
