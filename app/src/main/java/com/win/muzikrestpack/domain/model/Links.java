@@ -16,9 +16,46 @@ public class Links {
     @Expose
     private ArtistsSongs artistsSongs;
 
+    @SerializedName("artist")
+    @Expose
+    private String artist;
+    @SerializedName("album")
+    @Expose
+    private String album;
+
+    /**
+     * @param artistsAlbums
+     * @param artistsSongs
+     */
     public Links(ArtistsAlbums artistsAlbums, ArtistsSongs artistsSongs) {
         this.artistsAlbums = artistsAlbums;
         this.artistsSongs = artistsSongs;
+    }
+
+    /**
+     * @param album
+     * @param artist
+     */
+    public Links(String artist, String album) {
+        super();
+        this.artist = artist;
+        this.album = album;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
     }
 
     public ArtistsAlbums getArtistsAlbums() {

@@ -13,12 +13,24 @@ public class RESTMeta {
     @Expose
     private RESTArtists artists;
 
+    @SerializedName("songs")
+    @Expose
+    private RESTSongs songs;
+
     public RESTArtists getArtists() {
         return artists;
     }
 
     public void setArtists(RESTArtists artists) {
         this.artists = artists;
+    }
+
+    public RESTSongs getSongs() {
+        return songs;
+    }
+
+    public void setSongs(RESTSongs songs) {
+        this.songs = songs;
     }
 
 }

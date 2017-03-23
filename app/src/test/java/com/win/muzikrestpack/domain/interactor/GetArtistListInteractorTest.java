@@ -47,7 +47,7 @@ public class GetArtistListInteractorTest {
 
         Artist dummyArtistfirst = new Artist("1", "Mona", "http://ab.com", "http://www.flightstatus.com"
         );
-        Artist dummyArtistsecond= new Artist("1", "Mona", "http://ab.com", "http://www.flightstatus.com"
+        Artist dummyArtistsecond = new Artist("1", "Mona", "http://ab.com", "http://www.flightstatus.com"
         );
         Artist dummyArtistthird = new Artist("1", "Mona", "http://ab.com", "http://www.flightstatus.com"
         );

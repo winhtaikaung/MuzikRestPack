@@ -16,6 +16,13 @@ public class RESTLinks {
     @Expose
     private RESTArtistsSongs artistsSongs;
 
+    @SerializedName("artist")
+    @Expose
+    private String artist;
+    @SerializedName("album")
+    @Expose
+    private String album;
+
     public RESTArtistsAlbums getArtistsAlbums() {
         return artistsAlbums;
     }
@@ -30,6 +37,23 @@ public class RESTLinks {
 
     public void setArtistsSongs(RESTArtistsSongs artistsSongs) {
         this.artistsSongs = artistsSongs;
+    }
+
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
     }
 
 }

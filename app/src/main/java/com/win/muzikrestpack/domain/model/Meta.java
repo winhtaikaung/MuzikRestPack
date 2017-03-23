@@ -13,8 +13,17 @@ public class Meta {
     @Expose
     private Artists artists;
 
+    @SerializedName("songs")
+    @Expose
+    private Songs songs;
+
     public Meta(Artists artists) {
         this.artists = artists;
+    }
+
+    public Meta(Songs songs) {
+        super();
+        this.songs = songs;
     }
 
     public Artists getArtists() {
@@ -24,5 +33,14 @@ public class Meta {
     public void setArtists(Artists artists) {
         this.artists = artists;
     }
+
+    public Songs getSongs() {
+        return songs;
+    }
+
+    public void setSongs(Songs songs) {
+        this.songs = songs;
+    }
+
 
 }

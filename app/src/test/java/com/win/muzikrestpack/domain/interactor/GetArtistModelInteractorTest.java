@@ -16,7 +16,9 @@ import com.win.muzikrestpack.domain.executor.MainThread;
 import com.win.muzikrestpack.domain.interactors.GetArtistModelInteractor;
 import com.win.muzikrestpack.domain.interactors.impl.GetArtistModelInteractorImpl;
 import com.win.muzikrestpack.domain.repository.ArtistRepository;
+
 import io.reactivex.Observable;
+
 import com.win.muzikrestpack.domain.model.Artist;
 import com.win.muzikrestpack.domain.model.ArtistModel;
 import com.win.muzikrestpack.domain.model.Artists;
@@ -69,12 +71,12 @@ public class GetArtistModelInteractorTest {
 
         Observable<ArtistModel> dummyArtistModel = Observable.just(dummyModel);
 
-        when(mArtistRepository.getArtistModel(String.valueOf(1),dummyArtistfirst.getId()))
+        when(mArtistRepository.getArtistModel(String.valueOf(1), dummyArtistfirst.getId()))
                 .thenReturn(dummyArtistModel);
 
-        GetArtistModelInteractorImpl interactor = new GetArtistModelInteractorImpl(mExecutor, mMainThread, mArtistRepository,"1",dummyArtistfirst.getId(), mMockedCallback);
+        GetArtistModelInteractorImpl interactor = new GetArtistModelInteractorImpl(mExecutor, mMainThread, mArtistRepository, "1", dummyArtistfirst.getId(), mMockedCallback);
         interactor.run();
-        Mockito.verify(mArtistRepository).getArtistModel(String.valueOf(1),dummyArtistfirst.getId());
+        Mockito.verify(mArtistRepository).getArtistModel(String.valueOf(1), dummyArtistfirst.getId());
         Mockito.verifyNoMoreInteractions(mArtistRepository);
         Mockito.verify(mMockedCallback).onArtistModelRetrieved(dummyArtistModel);
 

@@ -17,5 +17,5 @@ public interface ArtistDataStore {
 
     Observable<List<RESTArtist>> getArtists();
 
-    Observable<RESTArtistModel> getArtistModel(String page,String artistId);
+    Observable<RESTArtistModel> getArtistModel(String page, String artistId);
 }
