@@ -1,7 +1,7 @@
 package com.win.muzikrestpack.domain.model;
 
 /**
- * Created by winhtaikaung on 20/3/17.
+ * Created by win on 3/23/17.
  */
 
 import com.google.gson.annotations.Expose;
@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Artists {
+public class Songs {
 
     @SerializedName("page")
     @Expose
@@ -31,33 +31,42 @@ public class Artists {
     private Object previousPage;
     @SerializedName("next_page")
     @Expose
-    private Object nextPage;
+    private Integer nextPage;
     @SerializedName("previous_href")
     @Expose
     private Object previousHref;
     @SerializedName("next_href")
     @Expose
-    private Object nextHref;
+    private String nextHref;
 
     /**
-     * @param page
-     * @param pageSize
-     * @param include
-     * @param pageCount
-     * @param previousPage
-     * @param nextPage
-     * @param nextHref
-     * @param previousHref
+     * No args constructor for use in serialization
      */
-    public Artists(Integer page, Integer pageSize, List<Object> include, Integer pageCount, Object previousPage, Object nextPage, Object nextHref, Object previousHref) {
+    public Songs() {
+    }
+
+    /**
+     * @param pageCount
+     * @param nextPage
+     * @param count
+     * @param nextHref
+     * @param page
+     * @param previousHref
+     * @param pageSize
+     * @param previousPage
+     * @param include
+     */
+    public Songs(Integer page, Integer pageSize, Integer count, List<Object> include, Integer pageCount, Object previousPage, Integer nextPage, Object previousHref, String nextHref) {
+        super();
         this.page = page;
         this.pageSize = pageSize;
+        this.count = count;
         this.include = include;
         this.pageCount = pageCount;
         this.previousPage = previousPage;
         this.nextPage = nextPage;
-        this.nextHref = nextHref;
         this.previousHref = previousHref;
+        this.nextHref = nextHref;
     }
 
     public Integer getPage() {
@@ -108,11 +117,11 @@ public class Artists {
         this.previousPage = previousPage;
     }
 
-    public Object getNextPage() {
+    public Integer getNextPage() {
         return nextPage;
     }
 
-    public void setNextPage(Object nextPage) {
+    public void setNextPage(Integer nextPage) {
         this.nextPage = nextPage;
     }
 
@@ -124,11 +133,11 @@ public class Artists {
         this.previousHref = previousHref;
     }
 
-    public Object getNextHref() {
+    public String getNextHref() {
         return nextHref;
     }
 
-    public void setNextHref(Object nextHref) {
+    public void setNextHref(String nextHref) {
         this.nextHref = nextHref;
     }
 

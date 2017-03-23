@@ -6,6 +6,7 @@ package com.win.muzikrestpack.data.network;
 
 public class Endpoints {
 
-    private static final String API_VERSION  = "v1/";
-    public static final String ARTIST_API = API_VERSION+"artists";
+    private static final String API_VERSION = "v1/";
+    public static final String ARTIST_API = API_VERSION + "artists";
+    public static final String SONG_API = API_VERSION + "songs";
 }

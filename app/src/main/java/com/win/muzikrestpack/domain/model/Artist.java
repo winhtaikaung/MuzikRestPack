@@ -3,6 +3,7 @@ package com.win.muzikrestpack.domain.model;
 /**
  * Created by winhtaikaung on 20/3/17.
  */
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -21,7 +22,13 @@ public class Artist {
     @Expose
     private String href;
 
-    public Artist(String id,String name,String website,String href){
+    /**
+     * @param id
+     * @param name
+     * @param website
+     * @param href
+     */
+    public Artist(String id, String name, String website, String href) {
         this.id = id;
         this.name = name;
         this.website = website;

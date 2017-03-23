@@ -1,13 +1,13 @@
 package com.win.muzikrestpack.domain.model;
 
 /**
- * Created by winhtaikaung on 20/3/17.
+ * Created by win on 3/23/17.
  */
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ArtistsSongs {
+public class SongsArtist {
 
     @SerializedName("href")
     @Expose
@@ -17,10 +17,17 @@ public class ArtistsSongs {
     private String type;
 
     /**
-     * @param href
-     * @param type
+     * No args constructor for use in serialization
      */
-    public ArtistsSongs(String href, String type) {
+    public SongsArtist() {
+    }
+
+    /**
+     * @param type
+     * @param href
+     */
+    public SongsArtist(String href, String type) {
+        super();
         this.href = href;
         this.type = type;
     }

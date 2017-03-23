@@ -16,6 +16,10 @@ public class ArtistsAlbums {
     @Expose
     private String type;
 
+    /**
+     * @param href
+     * @param type
+     */
     public ArtistsAlbums(String href, String type) {
         this.href = href;
         this.type = type;

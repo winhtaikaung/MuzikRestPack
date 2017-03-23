@@ -7,7 +7,9 @@ import com.win.muzikrestpack.domain.executor.MainThread;
 import com.win.muzikrestpack.domain.interactors.GetArtistListInteractor;
 import com.win.muzikrestpack.domain.interactors.base.AbstractInteractor;
 import com.win.muzikrestpack.domain.repository.ArtistRepository;
+
 import io.reactivex.Observable;
+
 import com.win.muzikrestpack.domain.model.Artist;
 
 /**

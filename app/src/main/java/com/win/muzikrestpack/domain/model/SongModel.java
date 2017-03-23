@@ -1,7 +1,7 @@
 package com.win.muzikrestpack.domain.model;
 
 /**
- * Created by winhtaikaung on 20/3/17.
+ * Created by win on 3/24/17.
  */
 
 import com.google.gson.annotations.Expose;
@@ -9,42 +9,49 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ArtistModel {
+public class SongModel {
 
-    @SerializedName("artists")
+    @SerializedName("songs")
     @Expose
-    private List<Artist> artists = null;
+    private List<Song> songs = null;
     @SerializedName("links")
     @Expose
-    private Links links;
+    private Links_ links;
     @SerializedName("meta")
     @Expose
     private Meta meta;
 
     /**
-     * @param artistList
+     * No args constructor for use in serialization
+     */
+    public SongModel() {
+    }
+
+    /**
+     * @param songs
      * @param links
      * @param meta
      */
-    public ArtistModel(List<Artist> artistList, Links links, Meta meta) {
-        this.artists = artistList;
+    public SongModel(List<Song> songs, Links_ links, Meta meta) {
+        super();
+        this.songs = songs;
         this.links = links;
         this.meta = meta;
     }
 
-    public List<Artist> getArtists() {
-        return artists;
+    public List<Song> getSongs() {
+        return songs;
     }
 
-    public void setArtists(List<Artist> artists) {
-        this.artists = artists;
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
-    public Links getLinks() {
+    public Links_ getLinks() {
         return links;
     }
 
-    public void setLinks(Links links) {
+    public void setLinks(Links_ links) {
         this.links = links;
     }
 

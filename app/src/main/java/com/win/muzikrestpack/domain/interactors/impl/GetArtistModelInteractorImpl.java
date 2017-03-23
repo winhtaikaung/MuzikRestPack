@@ -5,7 +5,9 @@ import com.win.muzikrestpack.domain.executor.MainThread;
 import com.win.muzikrestpack.domain.interactors.GetArtistModelInteractor;
 import com.win.muzikrestpack.domain.interactors.base.AbstractInteractor;
 import com.win.muzikrestpack.domain.repository.ArtistRepository;
+
 import io.reactivex.Observable;
+
 import com.win.muzikrestpack.domain.model.ArtistModel;
 
 /**
@@ -32,7 +34,7 @@ public class GetArtistModelInteractorImpl extends AbstractInteractor implements 
 
     @Override
     public void run() {
-        final Observable<ArtistModel> artists = mArtistRepository.getArtistModel(page,artistId);
+        final Observable<ArtistModel> artists = mArtistRepository.getArtistModel(page, artistId);
 
         // Show costs on the main thread
         mMainThread.post(new Runnable() {

@@ -22,6 +22,12 @@ public class RESTArtist {
     @Expose
     private String href;
 
+    /**
+     * @param id
+     * @param name
+     * @param website
+     * @param href
+     */
     public RESTArtist(String id, String name, String website, String href) {
         this.id = id;
         this.name = name;
