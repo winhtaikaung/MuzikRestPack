@@ -24,8 +24,21 @@ public class SongCloudDataStore implements SongDataStore {
 
 
     @Override
-    public Observable<RESTSongModel> getSongs(String page, String artistId) {
-        return getRetrofit().create(SongService.class).getSongs(page, artistId)
+    public Observable<RESTSongModel> getSongByArtistId(String page, String artistId) {
+        return getRetrofit().create(SongService.class).getSongsByArtistId(page, artistId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(new Consumer<RESTSongModel>() {
+                    @Override
+                    public void accept(RESTSongModel restSongModel) throws Exception {
+//                        Log.e(TAG + "Model", restSongModel.getRESTMeta().getArtists().toString());
+                    }
+                });
+    }
+
+    @Override
+    public Observable<RESTSongModel> getSongs(String page, String pageSize) {
+        return getRetrofit().create(SongService.class).getSongs(page, pageSize)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(new Consumer<RESTSongModel>() {

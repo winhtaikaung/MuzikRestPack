@@ -10,7 +10,9 @@ import io.reactivex.Observable;
 
 public interface SongDataStore {
 
-    Observable<RESTSongModel> getSongs(String page, String artistId);
+    Observable<RESTSongModel> getSongByArtistId(String page, String artistId);
+
+    Observable<RESTSongModel> getSongs(String page,String pageSize);
 
     Observable<RESTSongModel> getSong(String songId);
 }

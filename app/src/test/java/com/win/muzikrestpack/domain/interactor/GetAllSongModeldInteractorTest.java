@@ -2,8 +2,8 @@ package com.win.muzikrestpack.domain.interactor;
 
 import com.win.muzikrestpack.domain.executor.Executor;
 import com.win.muzikrestpack.domain.executor.MainThread;
-import com.win.muzikrestpack.domain.interactors.GetSongModelInteractor;
-import com.win.muzikrestpack.domain.interactors.impl.GetSongModelInteractorImpl;
+import com.win.muzikrestpack.domain.interactors.GetAllSongModeldInteractor;
+import com.win.muzikrestpack.domain.interactors.impl.GetAllSongModelnteractorImpl;
 import com.win.muzikrestpack.domain.model.Artists;
 import com.win.muzikrestpack.domain.model.Links;
 import com.win.muzikrestpack.domain.model.Links_;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
  * Created by win on 3/24/17.
  */
 
-public class GetSongModelInteractorTest {
+public class GetAllSongModeldInteractorTest {
 
     private MainThread mMainThread;
     @Mock
@@ -40,7 +40,7 @@ public class GetSongModelInteractorTest {
     @Mock
     private SongRepository mSongRepository;
     @Mock
-    private GetSongModelInteractor.Callback mMockedCallback;
+    private GetAllSongModeldInteractor.Callback mMockedCallback;
 
     @Before
     public void setUp() throws Exception {
@@ -48,8 +48,10 @@ public class GetSongModelInteractorTest {
         mMainThread = new TestMainThread();
     }
 
+
+
     @Test
-    public void testGetSongModel() throws Exception {
+    public void testGetSongs() throws Exception {
 
         Song dummySongfirst = new Song("1", "Mona", "http://ab.com", new Links("1", "1")
         );
@@ -72,11 +74,11 @@ public class GetSongModelInteractorTest {
         when(mSongRepository.getSongs(String.valueOf(1), dummySongfirst.getId()))
                 .thenReturn(dummySongModelObservable);
 
-        GetSongModelInteractorImpl interactor = new GetSongModelInteractorImpl(mExecutor, mMainThread, mSongRepository, "1", dummySongfirst.getId(), mMockedCallback);
+        GetAllSongModelnteractorImpl interactor = new GetAllSongModelnteractorImpl(mExecutor, mMainThread, mSongRepository, "1", dummySongfirst.getId(), mMockedCallback);
         interactor.run();
         Mockito.verify(mSongRepository).getSongs(String.valueOf(1), dummySongfirst.getId());
         Mockito.verifyNoMoreInteractions(mSongRepository);
-        Mockito.verify(mMockedCallback).onSongModelRetrieved(dummySongModelObservable);
+        Mockito.verify(mMockedCallback).onAllSongModelRetrieved(dummySongModelObservable);
 
     }
 }

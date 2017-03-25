@@ -33,10 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mPager);
 
-
-    }
-
-    //        //TODO presentation layer to be implemented
+                //TODO presentation layer to be implemented
 //        ArtistDataStoreFactory dataStoreFactory = new ArtistDataStoreFactory();
 //        ArtistDataRepository dataRepo = new ArtistDataRepository(dataStoreFactory, new RESTArtistModelConverter());
 //        Observable<ArtistModel> flight = dataRepo.getArtistModel("1", "3");
@@ -49,11 +46,15 @@ public class MainActivity extends AppCompatActivity {
 //
 //        SongDataStoreFactory songDataStoreFactory = new SongDataStoreFactory();
 //        SongDataRepository songdataRepo = new SongDataRepository(songDataStoreFactory, new RESTSongModelConverter());
-//        Observable<SongModel> songModel = songdataRepo.getSong("1");
+//        Observable<SongModel> songModel = songdataRepo.getSongs("1","3");
 //        songModel.subscribe(new Consumer<SongModel>() {
 //            @Override
 //            public void accept(SongModel songModel) throws Exception {
-//                Log.e("SONGdata", songModel.getSongs().get(0).getTitle());
+//                Log.e("SONGdata", String.valueOf(songModel.getSongs().size()));
 //            }
 //        });
+
+    }
+
+
 }

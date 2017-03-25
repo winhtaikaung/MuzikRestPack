@@ -8,8 +8,8 @@ import io.reactivex.Observable;
  * Created by win on 3/24/17.
  */
 
-public interface GetSongModelInteractor {
+public interface GetAllSongModeldInteractor {
     interface Callback {
-        void onSongModelRetrieved(Observable<SongModel> songModelObservable);
+        void onAllSongModelRetrieved(Observable<SongModel> songModelObservable);
     }
 }
