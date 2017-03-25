@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.win.muzikrestpack.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <include layout="@layout/toolbar"/>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        style="@style/MyCustomTabLayout"
+        app:tabMode="fixed"
+        app:tabGravity="fill" />
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:id="@+id/pager"
+        android:layout_height="match_parent">
 
-</FrameLayout>
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
