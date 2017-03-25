@@ -14,4 +14,6 @@ public interface SongListPresenter {
         void onSongItemClick(String songId,int position);
     }
 
+    void getSongs(String page,String pageSize);
+
 }

@@ -1,4 +1,4 @@
-package com.win.muzikrestpack.domain.interactors.impl;
+package com.win.muzikrestpack.domain.interactors.impl.Artist;
 
 import java.util.List;
 

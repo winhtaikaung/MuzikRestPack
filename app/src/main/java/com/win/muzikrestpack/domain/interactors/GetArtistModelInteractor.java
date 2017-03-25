@@ -11,5 +11,6 @@ import io.reactivex.Observable;
 public interface GetArtistModelInteractor {
     interface Callback {
         void onArtistModelRetrieved(Observable<ArtistModel> flightList);
+
     }
 }

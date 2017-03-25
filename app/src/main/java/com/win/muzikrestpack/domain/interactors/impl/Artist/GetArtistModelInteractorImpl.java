@@ -1,14 +1,13 @@
-package com.win.muzikrestpack.domain.interactors.impl;
+package com.win.muzikrestpack.domain.interactors.impl.Artist;
 
 import com.win.muzikrestpack.domain.executor.Executor;
 import com.win.muzikrestpack.domain.executor.MainThread;
 import com.win.muzikrestpack.domain.interactors.GetArtistModelInteractor;
 import com.win.muzikrestpack.domain.interactors.base.AbstractInteractor;
+import com.win.muzikrestpack.domain.model.ArtistModel;
 import com.win.muzikrestpack.domain.repository.ArtistRepository;
 
 import io.reactivex.Observable;
-
-import com.win.muzikrestpack.domain.model.ArtistModel;
 
 /**
  * Created by winhtaikaung on 20/3/17.
@@ -21,6 +20,15 @@ public class GetArtistModelInteractorImpl extends AbstractInteractor implements 
     private String page;
     private String artistId;
 
+    /**
+     *
+     * @param threadExecutor
+     * @param mainThread
+     * @param artistRepository
+     * @param page
+     * @param artistId
+     * @param callback
+     */
     public GetArtistModelInteractorImpl(Executor threadExecutor, MainThread mainThread,
                                         ArtistRepository artistRepository, String page, String artistId,
                                         Callback callback) {

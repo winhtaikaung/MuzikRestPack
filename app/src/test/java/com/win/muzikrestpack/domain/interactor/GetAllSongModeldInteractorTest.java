@@ -3,7 +3,7 @@ package com.win.muzikrestpack.domain.interactor;
 import com.win.muzikrestpack.domain.executor.Executor;
 import com.win.muzikrestpack.domain.executor.MainThread;
 import com.win.muzikrestpack.domain.interactors.GetAllSongModeldInteractor;
-import com.win.muzikrestpack.domain.interactors.impl.GetAllSongModelnteractorImpl;
+import com.win.muzikrestpack.domain.interactors.impl.Song.GetAllSongModelnteractorImpl;
 import com.win.muzikrestpack.domain.model.Artists;
 import com.win.muzikrestpack.domain.model.Links;
 import com.win.muzikrestpack.domain.model.Links_;
