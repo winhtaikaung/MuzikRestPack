@@ -1,19 +1,32 @@
 package com.win.muzikrestpack.presentation.presenter;
 
-import com.win.muzikrestpack.presentation.view.BaseView;
-
 /**
  * Created by win on 3/25/17.
  */
 
-public interface SongListPresenter {
+public class SongListPresenter implements BasePresenter {
+    @Override
+    public void resume() {
 
-    interface View extends BaseView {
-        void showSongList();
-
-        void onSongItemClick(String songId,int position);
     }
 
-    void getSongs(String page,String pageSize);
+    @Override
+    public void pause() {
 
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+    @Override
+    public void destroy() {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
 }

@@ -3,7 +3,7 @@ package com.win.muzikrestpack.presentation.presenter;
 /**
  * Created by win on 3/25/17.
  */
-public interface BasePresenter {
+public interface BasePresenter  {
     /**
      * Method that control the lifecycle of the view. It should be called in the view's
      * (Activity or Fragment) onResume() method.

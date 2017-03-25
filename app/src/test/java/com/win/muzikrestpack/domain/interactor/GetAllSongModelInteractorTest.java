@@ -2,7 +2,7 @@ package com.win.muzikrestpack.domain.interactor;
 
 import com.win.muzikrestpack.domain.executor.Executor;
 import com.win.muzikrestpack.domain.executor.MainThread;
-import com.win.muzikrestpack.domain.interactors.GetAllSongModeldInteractor;
+import com.win.muzikrestpack.domain.interactors.GetAllSongModelInteractor;
 import com.win.muzikrestpack.domain.interactors.impl.Song.GetAllSongModelnteractorImpl;
 import com.win.muzikrestpack.domain.model.Artists;
 import com.win.muzikrestpack.domain.model.Links;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
  * Created by win on 3/24/17.
  */
 
-public class GetAllSongModeldInteractorTest {
+public class GetAllSongModelInteractorTest {
 
     private MainThread mMainThread;
     @Mock
@@ -40,7 +40,7 @@ public class GetAllSongModeldInteractorTest {
     @Mock
     private SongRepository mSongRepository;
     @Mock
-    private GetAllSongModeldInteractor.Callback mMockedCallback;
+    private GetAllSongModelInteractor.Callback mMockedCallback;
 
     @Before
     public void setUp() throws Exception {

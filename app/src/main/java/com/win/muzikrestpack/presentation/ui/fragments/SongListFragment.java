@@ -28,7 +28,10 @@ import butterknife.ButterKnife;
  * Created by win on 3/25/17.
  */
 
-public class SongListFragment extends Fragment {
+public class SongListFragment extends Fragment  {
+
+    private List<Song> mSongList;
+
 
 
     @BindView(R.id.rvSongList)
@@ -38,7 +41,8 @@ public class SongListFragment extends Fragment {
     private EndlessRecyclerViewAdapter mEndlessRecyclerViewAdapter;
     private SongListAdapter mSongListAdapter;
 
-    private List<Song> mSongList;
+
+
 
     @Nullable
     @Override
@@ -46,6 +50,13 @@ public class SongListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_songlist,container,false);
         ButterKnife.bind(this,view);
 
+
+
+        return view;
+    }
+
+
+    private void fillRecyclerView(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
         mSongListRecyclerView.setLayoutManager(linearLayoutManager);
         mSongListAdapter = new SongListAdapter();
@@ -64,8 +75,6 @@ public class SongListFragment extends Fragment {
 
 
         mSongListRecyclerView.setAdapter(mEndlessRecyclerViewAdapter);
-
-        return view;
     }
 
     private void loadSongData(){
@@ -111,4 +120,7 @@ public class SongListFragment extends Fragment {
 
         return dummySongList;
     }
+
+
+
 }
