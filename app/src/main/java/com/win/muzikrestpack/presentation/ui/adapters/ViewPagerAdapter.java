@@ -21,25 +21,24 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     String[] mtitles;
     FragmentManager fragManager;
     FragmentTransaction ft;
-    public ViewPagerAdapter(FragmentManager fm,String[] titles) {
-        super(fm);
-        this.fragManager=fm;
-        this.ft=fragManager.beginTransaction();
 
-        this.mtitles=titles;
+    public ViewPagerAdapter(FragmentManager fm, String[] titles) {
+        super(fm);
+        this.fragManager = fm;
+        this.ft = fragManager.beginTransaction();
+
+        this.mtitles = titles;
     }
 
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
-        switch (position){
+        switch (position) {
             case 0:
                 return new SongListFragment();
 
             case 1:
-
                 return new ArtistListFragment();
-
 
 
         }
