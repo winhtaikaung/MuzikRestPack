@@ -15,7 +15,12 @@ public interface SongListPresenter {
     interface View extends BaseView {
 
         void onAllSongModelRetrieved(List<Song> songModelObservable);
+
+        void onProceedSongDetailViewActivity(Song song);
+
     }
+
+    void onItemClicked(Song song);
 
     void getAllSongsModel(String page, String pageSize);
 

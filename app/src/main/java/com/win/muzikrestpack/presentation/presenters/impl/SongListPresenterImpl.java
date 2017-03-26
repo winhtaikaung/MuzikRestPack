@@ -6,6 +6,7 @@ import com.win.muzikrestpack.domain.executor.Executor;
 import com.win.muzikrestpack.domain.executor.MainThread;
 import com.win.muzikrestpack.domain.interactors.GetAllSongModelInteractor;
 import com.win.muzikrestpack.domain.interactors.impl.Song.GetAllSongModelnteractorImpl;
+import com.win.muzikrestpack.domain.model.Song;
 import com.win.muzikrestpack.domain.model.SongModel;
 import com.win.muzikrestpack.domain.repository.SongRepository;
 import com.win.muzikrestpack.presentation.presenters.AbstractPresenter;
@@ -35,6 +36,11 @@ public class SongListPresenterImpl extends AbstractPresenter implements SongList
         mView = view;
         mSongRepository = songRepository;
 
+    }
+
+    @Override
+    public void onItemClicked(Song song) {
+        mView.onProceedSongDetailViewActivity(song);
     }
 
     @Override

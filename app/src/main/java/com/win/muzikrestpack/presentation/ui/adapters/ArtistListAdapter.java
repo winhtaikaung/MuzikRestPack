@@ -40,7 +40,7 @@ public class ArtistListAdapter extends BaseAdapter<BaseAdapter.BaseViewHolder> {
         mContext = parent.getContext();
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.artist_item_view, parent, false);
-        return new BaseViewHolder(view);
+        return new ViewHolder(view,this);
     }
 
     @Override

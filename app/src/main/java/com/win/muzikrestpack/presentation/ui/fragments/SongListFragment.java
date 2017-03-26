@@ -1,5 +1,6 @@
 package com.win.muzikrestpack.presentation.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.win.muzikrestpack.domain.executor.impl.ThreadExecutor;
 import com.win.muzikrestpack.domain.model.Song;
 import com.win.muzikrestpack.presentation.presenters.SongListPresenter;
 import com.win.muzikrestpack.presentation.presenters.impl.SongListPresenterImpl;
+import com.win.muzikrestpack.presentation.ui.activities.SongDetailActivity;
 import com.win.muzikrestpack.presentation.ui.adapters.SongListAdapter;
 import com.win.muzikrestpack.presentation.ui.base.EndlessRecyclerViewAdapter;
 import com.win.muzikrestpack.threading.MainThreadImpl;
@@ -34,7 +36,7 @@ import butterknife.ButterKnife;
  * Created by win on 3/25/17.
  */
 
-public class SongListFragment extends Fragment implements SongListPresenter.View {
+public class SongListFragment extends Fragment implements SongListPresenter.View,AdapterView.OnItemClickListener {
     @BindView(R.id.rvSongList)
     RecyclerView mSongListRecyclerView;
 
@@ -69,6 +71,8 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
         mSongListPresenter = new SongListPresenterImpl(ThreadExecutor.getInstance(),
                 MainThreadImpl.getInstance(), this, songDataRepository);
 
+
+
         if (mSongListPresenter.doCheckDataConnection(this.getActivity())) {
             mSongListPresenter.getAllSongsModel("1", "3");
             fillRecyclerView();
@@ -82,12 +86,7 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
         mSongListRecyclerView.setLayoutManager(linearLayoutManager);
         mSongListAdapter = new SongListAdapter();
-        mSongListAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
+        mSongListAdapter.setOnItemClickListener(this);
         mEndlessRecyclerViewAdapter = new EndlessRecyclerViewAdapter(this.getActivity(), mSongListAdapter, new EndlessRecyclerViewAdapter.RequestToLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
@@ -123,6 +122,13 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
     }
 
     @Override
+    public void onProceedSongDetailViewActivity(Song song) {
+        Intent i = new Intent(this.getActivity(), SongDetailActivity.class);
+        i.putExtra("SONG_ID",song.getId());
+        startActivity(i);
+    }
+
+    @Override
     public void showProgress() {
         mProgressView.setVisibility(View.VISIBLE);
         mSongListRecyclerView.setVisibility(View.GONE);
@@ -149,5 +155,11 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
         mSongListRecyclerView.setVisibility(View.VISIBLE);
         mErrorView.setVisibility(View.GONE);
         tvErrorText.setText(message);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            mSongListPresenter.onItemClicked(mSongList.get(i));
     }
 }
