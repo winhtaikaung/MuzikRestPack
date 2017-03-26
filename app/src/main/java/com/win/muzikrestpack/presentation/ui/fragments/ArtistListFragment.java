@@ -69,7 +69,6 @@ public class ArtistListFragment extends Fragment implements ArtistListPresenter.
         mArtistListPresenter = new ArtistListPresenterImpl(ThreadExecutor.getInstance(), MainThreadImpl.getInstance(), this, mArtistDataRepository);
 
         if (mArtistListPresenter.doCheckDataConnection(this.getActivity())) {
-            mArtistListPresenter.getAllArtistModel("1", "3");
             fillRecyclerView();
         }
         return view;

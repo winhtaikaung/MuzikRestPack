@@ -76,10 +76,8 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
                 artistDataRepository, songDataRepository);
 
         Intent intent = getIntent();
-        String artistId = TextUtils.isEmpty(intent.getStringExtra("ARTIST_ID")) ? "1" : intent.getStringExtra("ARTIST_ID");
-
-        mArtistDetailPresenter.getArtistModel(artistId);
-        mArtistDetailPresenter.getSongModelByArtistId("1", artistId);
+        final String artistId = TextUtils.isEmpty(intent.getStringExtra("ARTIST_ID")) ? "1" : intent.getStringExtra("ARTIST_ID");
+        fetchDataByMessagingThread(artistId);
         layoutManager = new LinearLayoutManager(this);
 
 
@@ -89,13 +87,14 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
     public void onArtistModelRetrieved(final Artist artist) {
         Log.e("ARTIST_DETAIL", artist.getName());
         sectionList.add(new SectionView(artist, false));
-
+        getSupportActionBar().setTitle(artist.getName());
         //Observing Sections items
         Observable<List<SectionView>> observer = Observable.just(sectionList);
         observer.subscribe(new Consumer<List<SectionView>>() {
             @Override
             public void accept(List<SectionView> sectionViewList) throws Exception {
                 if (sectionViewList.size() == 2) {
+
                     getSupportActionBar().setTitle(artist.getName());
                     mArtistDetailAdapter = new ArtistDetailAdapter(sectionList);
                     mDetailRecyclerView.setLayoutManager(layoutManager);
@@ -128,6 +127,24 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
         });
 
     }
+
+    void fetchDataByMessagingThread(final String artistId) {
+        final Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                mArtistDetailPresenter.getArtistModel(artistId);
+                Runnable runnable1 = new Runnable() {
+                    @Override
+                    public void run() {
+                        mArtistDetailPresenter.getSongModelByArtistId("1", artistId);
+                    }
+                };
+                new Thread(runnable1).start();
+            }
+        };
+        new Thread(runnable).start();
+    }
+
 
     @Override
     public void showProgress() {

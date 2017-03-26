@@ -19,6 +19,8 @@ public interface ArtistDetailPresenter {
         void onArtistModelRetrieved(Artist artist);
 
         void onSongListRetrieved(List<Song> songList);
+
+
     }
 }
 

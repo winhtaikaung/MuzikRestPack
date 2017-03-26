@@ -73,4 +73,6 @@ public class ArtistDetailPresenterImpl extends AbstractPresenter implements Arti
         getSongModelByArtistIdInteractor.execute();
 
     }
+
+
 }
