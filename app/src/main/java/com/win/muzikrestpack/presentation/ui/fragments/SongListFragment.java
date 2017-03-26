@@ -1,7 +1,6 @@
 package com.win.muzikrestpack.presentation.ui.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.win.muzikrestpack.R;
 import com.win.muzikrestpack.data.network.converter.RESTSongModelConverter;
@@ -35,23 +35,27 @@ import butterknife.ButterKnife;
  */
 
 public class SongListFragment extends Fragment implements SongListPresenter.View {
-
-    private List<Song> mSongList;
-
-    private SongListPresenter mSongListPresenter;
-
     @BindView(R.id.rvSongList)
     RecyclerView mSongListRecyclerView;
 
     @BindView(R.id.progressView)
     FrameLayout mProgressView;
 
+    @BindView(R.id.errView)
+    FrameLayout mErrorView;
+
+    @BindView(R.id.tvErrorText)
+    TextView tvErrorText;
+
+    private List<Song> mSongList;
+    private SongListPresenter mSongListPresenter;
+
     private int mCounter = 1;
     private EndlessRecyclerViewAdapter mEndlessRecyclerViewAdapter;
     private SongListAdapter mSongListAdapter;
 
-    SongDataStoreFactory songDataStoreFactory;
-    SongDataRepository songDataRepository;
+    private SongDataStoreFactory songDataStoreFactory;
+    private SongDataRepository songDataRepository;
 
 
     @Nullable
@@ -65,7 +69,10 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
         mSongListPresenter = new SongListPresenterImpl(ThreadExecutor.getInstance(),
                 MainThreadImpl.getInstance(), this, songDataRepository);
 
-        fillRecyclerView();
+        if(mSongListPresenter.doCheckDataConnection(this.getActivity())) {
+            mSongListPresenter.getAllSongsModel("1","3");
+            fillRecyclerView();
+        }
 
         return view;
     }
@@ -84,7 +91,11 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
         mEndlessRecyclerViewAdapter = new EndlessRecyclerViewAdapter(this.getActivity(), mSongListAdapter, new EndlessRecyclerViewAdapter.RequestToLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                mSongListPresenter.getAllSongsModel("1", "3");
+                if (mCounter == 1) {
+                    mSongListPresenter.getAllSongsModel("1", "3");
+                } else {
+                    mSongListPresenter.getAllSongsModel(String.valueOf(mCounter), "3");
+                }
             }
         });
 
@@ -94,32 +105,21 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
 
     @Override
     public void onAllSongModelRetrieved(final List<Song> songList) {
-        Handler handler = new Handler();
-        //Cannot in synchronous mode
-        // http://stackoverflow.com/questions/27070220/recycleview-notifydatasetchanged-illegalstateexception
-        final Runnable r = new Runnable() {
-            public void run() {
-                if (songList.size() > 0) {
-                    if (mCounter == 1) {
-                        mSongList = songList;
-                    } else {
+        if (songList.size() > 0) {
+            if (mCounter == 1) {
+                mSongList = songList;
+            } else {
 
-                        mSongList.addAll(songList);
+                mSongList.addAll(songList);
 
-                    }
-                    mSongListAdapter.setSongList(mSongList);
-                    mEndlessRecyclerViewAdapter.onDataReady(true);
-                    mCounter++;
-                    mSongListPresenter.getAllSongsModel(String.valueOf(mCounter), "3");
-                    Log.e("COUNTER", String.valueOf(mCounter));
-                } else {
-                    mEndlessRecyclerViewAdapter.onDataReady(false);
-                }
             }
-        };
+            mSongListAdapter.setSongList(mSongList);
+            mEndlessRecyclerViewAdapter.onDataReady(true);
+            mCounter++;
 
-        handler.post(r);
-        Log.e("ONALLSONGModelRetrieved", String.valueOf(songList.size()));
+        } else {
+            mEndlessRecyclerViewAdapter.onDataReady(false);
+        }
     }
 
     @Override
@@ -138,6 +138,16 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
 
     @Override
     public void showError(String message) {
+        mProgressView.setVisibility(View.GONE);
+        mSongListRecyclerView.setVisibility(View.GONE);
+        mErrorView.setVisibility(View.VISIBLE);
+        tvErrorText.setText(message);
+    }
 
+    @Override
+    public void hideError(String message) {
+        mSongListRecyclerView.setVisibility(View.VISIBLE);
+        mErrorView.setVisibility(View.GONE);
+        tvErrorText.setText(message);
     }
 }

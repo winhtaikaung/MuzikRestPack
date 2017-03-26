@@ -1,5 +1,7 @@
 package com.win.muzikrestpack.presentation.presenters;
 
+import android.content.Context;
+
 import com.win.muzikrestpack.domain.model.Artist;
 import com.win.muzikrestpack.presentation.view.BaseView;
 
@@ -15,4 +17,6 @@ public interface ArtistListPresenter {
     }
 
     void getAllArtistModel(String page,String pageSize);
+
+    boolean doCheckDataConnection(Context context);
 }

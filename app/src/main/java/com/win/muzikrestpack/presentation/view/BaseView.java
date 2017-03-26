@@ -24,4 +24,12 @@ public interface BaseView {
      * @param message The error message to be dislayed.
      */
     void showError(String message);
+
+
+    /**
+     * This method is used for hiding error messages on the UI.
+     *
+     * @param message The error message to be dislayed.
+     */
+    void hideError(String message);
 }
