@@ -17,7 +17,6 @@ public class SectionView {
 
 
     /**
-     *
      * @param listData
      * @param isList
      */

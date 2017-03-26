@@ -15,15 +15,15 @@
     </style>
 
 
-    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabTextAppearance">@style/MyCustomTabText</item>
-        <item name="tabSelectedTextColor">@color/colorAccent</item>
-        <item name="android:background">@color/colorPrimary</item>
+    <style name="TV_TITLE" parent="android:Widget.TextView">
+
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_medium_extra</item>
     </style>
 
-    <style name="MyCustomTabText" parent="TextAppearance.AppCompat.Button">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@android:color/darker_gray</item>
+    <style name="TV_SONG_TITLE" parent="android:Widget.TextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -22,7 +22,6 @@ public class GetAllSongModelnteractorImpl extends AbstractInteractor implements 
     private String pageSize;
 
     /**
-     *
      * @param threadExecutor
      * @param mainThread
      * @param songRepository

@@ -33,7 +33,7 @@ public class ArtistDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         mSectionView = sectionViewList;
     }
 
-    public void setArtistDetail(List<SectionView> sectionViewList){
+    public void setArtistDetail(List<SectionView> sectionViewList) {
         mSectionView = sectionViewList;
         notifyDataSetChanged();
     }
@@ -73,7 +73,7 @@ public class ArtistDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)  {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
 
         int viewType = getItemViewType(position);
@@ -94,7 +94,6 @@ public class ArtistDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
     }
-
 
 
     @Override

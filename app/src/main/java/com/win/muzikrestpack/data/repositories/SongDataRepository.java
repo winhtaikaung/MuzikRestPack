@@ -18,7 +18,6 @@ public class SongDataRepository implements SongRepository {
     private final SongDataStoreFactory songDataStoreFactory;
 
     /**
-     *
      * @param songDataStoreFactory
      * @param restSongModelConverter
      */

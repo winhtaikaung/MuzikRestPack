@@ -20,7 +20,6 @@ public class ArtistDataRepository implements ArtistRepository {
     private final ArtistDataStoreFactory artistDataStoreFactory;
 
     /**
-     *
      * @param artistDataStoreFactory
      * @param restArtistModelConverter
      */

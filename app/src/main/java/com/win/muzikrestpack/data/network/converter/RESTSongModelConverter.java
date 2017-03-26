@@ -27,7 +27,6 @@ import java.util.List;
 public class RESTSongModelConverter {
 
     /**
-     *
      * @param model
      * @return
      */
