@@ -24,8 +24,18 @@ public class SongDataRepository implements SongRepository {
 
 
     @Override
-    public Observable<SongModel> getSongs(String page, String artistId) {
-        return songDataStoreFactory.create().getSongs(page, artistId).map(new Function<RESTSongModel, SongModel>() {
+    public Observable<SongModel> getSongsByArtistId(String page, String artistId) {
+        return songDataStoreFactory.create().getSongByArtistId(page, artistId).map(new Function<RESTSongModel, SongModel>() {
+            @Override
+            public SongModel apply(RESTSongModel restSongModel) throws Exception {
+                return restSongModelConverter.convertToSongModel(restSongModel);
+            }
+        });
+    }
+
+    @Override
+    public Observable<SongModel> getSongs(String page, String pageSize) {
+        return songDataStoreFactory.create().getSongs(page, pageSize).map(new Function<RESTSongModel, SongModel>() {
             @Override
             public SongModel apply(RESTSongModel restSongModel) throws Exception {
                 return restSongModelConverter.convertToSongModel(restSongModel);

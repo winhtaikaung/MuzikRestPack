@@ -14,8 +14,12 @@ import retrofit2.http.Query;
 public interface SongService {
 
     @GET(Endpoints.SONG_API)
+    Observable<RESTSongModel> getSongsByArtistId(@Query("page") String Page,
+                                                 @Query("artist_ids") String ArtistId);
+
+    @GET(Endpoints.SONG_API)
     Observable<RESTSongModel> getSongs(@Query("page") String Page,
-                                       @Query("artist_ids") String ArtistId);
+                                                 @Query("page_size") String ArtistId);
 
     @GET(Endpoints.SONG_API)
     Observable<RESTSongModel> getSong(@Query("ids") String songId);

@@ -14,7 +14,7 @@ import java.util.List;
 import com.win.muzikrestpack.domain.executor.Executor;
 import com.win.muzikrestpack.domain.executor.MainThread;
 import com.win.muzikrestpack.domain.interactors.GetArtistModelInteractor;
-import com.win.muzikrestpack.domain.interactors.impl.GetArtistModelInteractorImpl;
+import com.win.muzikrestpack.domain.interactors.impl.Artist.GetArtistModelInteractorImpl;
 import com.win.muzikrestpack.domain.repository.ArtistRepository;
 
 import io.reactivex.Observable;
