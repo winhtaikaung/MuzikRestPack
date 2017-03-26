@@ -13,11 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/appbarlayout_height"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/tvArtistName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"/>
+            android:text="@string/app_name" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

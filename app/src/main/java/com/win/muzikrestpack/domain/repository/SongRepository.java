@@ -13,7 +13,7 @@ public interface SongRepository {
 
     Observable<SongModel> getSongsByArtistId(String page, String artistId);
 
-    Observable<SongModel> getSongs(String page,String pageSize);
+    Observable<SongModel> getSongs(String page, String pageSize);
 
     Observable<SongModel> getSong(String songId);
 

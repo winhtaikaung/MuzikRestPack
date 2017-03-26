@@ -9,7 +9,7 @@ import io.reactivex.Observable;
  * Created by win on 3/24/17.
  */
 
-public interface GetAllSongModelInteractor extends Interactor{
+public interface GetAllSongModelInteractor extends Interactor {
     interface Callback {
         void onAllSongModelRetrieved(Observable<SongModel> songModelObservable);
 

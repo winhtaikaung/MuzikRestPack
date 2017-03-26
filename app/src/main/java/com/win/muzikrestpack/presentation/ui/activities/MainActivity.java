@@ -14,11 +14,13 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String[] titles={"Songs","Artists"};
-    @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.pager) ViewPager mPager;
-    @BindView(R.id.tabs) TabLayout mTabLayout;
-
+    private final String[] titles = {"Songs", "Artists"};
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.pager)
+    ViewPager mPager;
+    @BindView(R.id.tabs)
+    TabLayout mTabLayout;
 
 
     @Override
@@ -29,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),titles);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles);
         mPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mPager);
 
-                //TODO presentation layer to be implemented
+        //TODO presentation layer to be implemented
 //        ArtistDataStoreFactory dataStoreFactory = new ArtistDataStoreFactory();
 //        ArtistDataRepository dataRepo = new ArtistDataRepository(dataStoreFactory, new RESTArtistModelConverter());
 //        Observable<ArtistModel> flight = dataRepo.getAllArtistModel("1", "3");

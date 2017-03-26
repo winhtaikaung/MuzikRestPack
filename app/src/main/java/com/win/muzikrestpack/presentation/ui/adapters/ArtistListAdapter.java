@@ -30,7 +30,7 @@ public class ArtistListAdapter extends BaseAdapter<BaseAdapter.BaseViewHolder> {
         artistList = new ArrayList<>();
     }
 
-    public void setSongList(List<Artist> songList){
+    public void setSongList(List<Artist> songList) {
         artistList = songList;
         notifyDataSetChanged();
     }
@@ -47,6 +47,7 @@ public class ArtistListAdapter extends BaseAdapter<BaseAdapter.BaseViewHolder> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         //Do Data Processing here
     }
+
     @Override
     public int getItemCount() {
         return artistList != null ? artistList.size() : 0;

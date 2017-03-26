@@ -21,7 +21,6 @@ public class GetAllArtistModelInteractorImpl extends AbstractInteractor implemen
     private String artistId;
 
     /**
-     *
      * @param threadExecutor
      * @param mainThread
      * @param artistRepository

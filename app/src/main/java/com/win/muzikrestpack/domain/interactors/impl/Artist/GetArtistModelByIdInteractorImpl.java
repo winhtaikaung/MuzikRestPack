@@ -21,7 +21,6 @@ public class GetArtistModelByIdInteractorImpl extends AbstractInteractor impleme
     private String artistId;
 
     /**
-     *
      * @param threadExecutor
      * @param mainThread
      * @param artistRepository
@@ -29,7 +28,7 @@ public class GetArtistModelByIdInteractorImpl extends AbstractInteractor impleme
      * @param callback
      */
     public GetArtistModelByIdInteractorImpl(Executor threadExecutor, MainThread mainThread,
-                                            ArtistRepository artistRepository,  String artistId,
+                                            ArtistRepository artistRepository, String artistId,
                                             Callback callback) {
         super(threadExecutor, mainThread);
         mArtistRepository = artistRepository;

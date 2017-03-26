@@ -16,7 +16,7 @@ public interface ArtistListPresenter {
         void onArtistModelRetrieved(List<Artist> artistList);
     }
 
-    void getAllArtistModel(String page,String pageSize);
+    void getAllArtistModel(String page, String pageSize);
 
     boolean doCheckDataConnection(Context context);
 }

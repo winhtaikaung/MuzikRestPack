@@ -19,7 +19,7 @@ public interface SongService {
 
     @GET(Endpoints.SONG_API)
     Observable<RESTSongModel> getSongs(@Query("page") String Page,
-                                                 @Query("page_size") String ArtistId);
+                                       @Query("page_size") String ArtistId);
 
     @GET(Endpoints.SONG_API)
     Observable<RESTSongModel> getSong(@Query("ids") String songId);

@@ -19,19 +19,18 @@ import io.reactivex.functions.Consumer;
  * Created by win on 3/26/17.
  */
 
-public class SongListPresenterImpl extends AbstractPresenter implements SongListPresenter,GetAllSongModelInteractor.Callback {
+public class SongListPresenterImpl extends AbstractPresenter implements SongListPresenter, GetAllSongModelInteractor.Callback {
 
     private SongListPresenter.View mView;
     private SongRepository mSongRepository;
 
     /**
-     *
      * @param executor
      * @param mainThread
      * @param view
      * @param songRepository
      */
-    public SongListPresenterImpl(Executor executor, MainThread mainThread,View view, SongRepository songRepository) {
+    public SongListPresenterImpl(Executor executor, MainThread mainThread, View view, SongRepository songRepository) {
         super(executor, mainThread);
         mView = view;
         mSongRepository = songRepository;
@@ -41,16 +40,16 @@ public class SongListPresenterImpl extends AbstractPresenter implements SongList
     @Override
     public void getAllSongsModel(String page, String pageSize) {
         GetAllSongModelInteractor songModelInteractor = new GetAllSongModelnteractorImpl(mExecutor,
-                mMainThread,mSongRepository,page,pageSize,this);
+                mMainThread, mSongRepository, page, pageSize, this);
         songModelInteractor.execute();
     }
 
     @Override
     public boolean doCheckDataConnection(Context context) {
-        if(!ConnectionHelper.isOnline(context)){
+        if (!ConnectionHelper.isOnline(context)) {
             mView.showError("Cannot connect to server");
             return false;
-        }else{
+        } else {
             mView.hideError("");
             return true;
         }

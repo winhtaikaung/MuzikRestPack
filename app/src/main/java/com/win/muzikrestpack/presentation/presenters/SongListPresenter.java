@@ -17,7 +17,7 @@ public interface SongListPresenter {
         void onAllSongModelRetrieved(List<Song> songModelObservable);
     }
 
-    void getAllSongsModel(String page,String pageSize);
+    void getAllSongsModel(String page, String pageSize);
 
     boolean doCheckDataConnection(Context context);
 

@@ -46,13 +46,13 @@ public class ArtistListPresenterImpl extends AbstractPresenter implements Artist
 
     @Override
     public boolean doCheckDataConnection(Context context) {
-            if(!ConnectionHelper.isOnline(context)){
-                mView.showError("Cannot connect to server");
-                return false;
-            }else{
-                mView.hideError("");
-                return true;
-            }
+        if (!ConnectionHelper.isOnline(context)) {
+            mView.showError("Cannot connect to server");
+            return false;
+        } else {
+            mView.hideError("");
+            return true;
+        }
     }
 
     @Override
