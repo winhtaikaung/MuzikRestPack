@@ -24,7 +24,6 @@ public class ArtistDataRepository implements ArtistRepository {
         this.artistDataStoreFactory = artistDataStoreFactory;
     }
 
-
     @Override
     public Observable<ArtistModel> getArtist(String artistId) {
         return artistDataStoreFactory.create().getArtist(artistId).map(new Function<RESTArtistModel, ArtistModel>() {
@@ -36,11 +35,10 @@ public class ArtistDataRepository implements ArtistRepository {
         });
     }
 
-
     @Override
-    public Observable<ArtistModel> getArtistModel(String page, String artistId) {
+    public Observable<ArtistModel> getAllArtistModel(String page, String pageSize) {
 
-        return artistDataStoreFactory.create().getArtistModel(page, artistId).map(new Function<RESTArtistModel, ArtistModel>() {
+        return artistDataStoreFactory.create().getArtistModel(page, pageSize).map(new Function<RESTArtistModel, ArtistModel>() {
             @Override
             public ArtistModel apply(RESTArtistModel restArtistModel) throws Exception {
                 return restArtistModelConverter.convertToArtistModel(restArtistModel);

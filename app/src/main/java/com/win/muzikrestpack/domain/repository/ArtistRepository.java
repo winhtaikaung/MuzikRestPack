@@ -14,5 +14,5 @@ public interface ArtistRepository {
     Observable<ArtistModel> getArtist(String artistId);
 
 
-    Observable<ArtistModel> getArtistModel(String page, String artistId);
+    Observable<ArtistModel> getAllArtistModel(String page, String pageSize);
 }

@@ -1,7 +1,7 @@
 package com.win.muzikrestpack.presentation.view;
 
 /**
- * Created by dmilicic on 7/28/15.
+ * Created by win on 3/25/17
  * <p/>
  * This interface represents a basic view. All views should implement these common methods.
  */

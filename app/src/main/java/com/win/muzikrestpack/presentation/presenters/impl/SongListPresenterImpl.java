@@ -21,6 +21,13 @@ public class SongListPresenterImpl extends AbstractPresenter implements SongList
     private SongListPresenter.View mView;
     private SongRepository mSongRepository;
 
+    /**
+     *
+     * @param executor
+     * @param mainThread
+     * @param view
+     * @param songRepository
+     */
     public SongListPresenterImpl(Executor executor, MainThread mainThread,View view, SongRepository songRepository) {
         super(executor, mainThread);
         mView = view;

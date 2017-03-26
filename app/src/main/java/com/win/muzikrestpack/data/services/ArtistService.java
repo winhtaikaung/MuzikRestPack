@@ -20,5 +20,5 @@ public interface ArtistService {
 
     @GET(Endpoints.ARTIST_API)
     Observable<RESTArtistModel> getArtistModel(@Query("page") String Page,
-                                               @Query("ids") String ArtistId);
+                                               @Query("page_size") String pageSize);
 }

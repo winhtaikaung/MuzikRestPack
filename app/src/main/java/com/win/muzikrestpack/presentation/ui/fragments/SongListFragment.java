@@ -51,7 +51,7 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
     private SongListAdapter mSongListAdapter;
 
     SongDataStoreFactory songDataStoreFactory;
-    SongDataRepository songdataRepo;
+    SongDataRepository songDataRepository;
 
 
     @Nullable
@@ -61,9 +61,9 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
         ButterKnife.bind(this, view);
 
         songDataStoreFactory = new SongDataStoreFactory();
-        songdataRepo = new SongDataRepository(songDataStoreFactory, new RESTSongModelConverter());
+        songDataRepository = new SongDataRepository(songDataStoreFactory, new RESTSongModelConverter());
         mSongListPresenter = new SongListPresenterImpl(ThreadExecutor.getInstance(),
-                MainThreadImpl.getInstance(), this, songdataRepo);
+                MainThreadImpl.getInstance(), this, songDataRepository);
 
         fillRecyclerView();
 

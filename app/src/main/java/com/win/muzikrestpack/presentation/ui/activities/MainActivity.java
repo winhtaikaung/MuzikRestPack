@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 //TODO presentation layer to be implemented
 //        ArtistDataStoreFactory dataStoreFactory = new ArtistDataStoreFactory();
 //        ArtistDataRepository dataRepo = new ArtistDataRepository(dataStoreFactory, new RESTArtistModelConverter());
-//        Observable<ArtistModel> flight = dataRepo.getArtistModel("1", "3");
+//        Observable<ArtistModel> flight = dataRepo.getAllArtistModel("1", "3");
 //        flight.subscribe(new Consumer<ArtistModel>() {
 //            @Override
 //            public void accept(ArtistModel artistModel) throws Exception {
