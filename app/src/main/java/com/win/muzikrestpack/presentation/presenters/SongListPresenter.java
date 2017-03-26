@@ -12,6 +12,12 @@ import java.util.List;
  */
 
 public interface SongListPresenter {
+    void onItemClicked(Song song);
+
+    void getAllSongsModel(String page, String pageSize);
+
+    boolean doCheckDataConnection(Context context);
+
     interface View extends BaseView {
 
         void onAllSongModelRetrieved(List<Song> songModelObservable);
@@ -19,11 +25,5 @@ public interface SongListPresenter {
         void onProceedSongDetailViewActivity(Song song);
 
     }
-
-    void onItemClicked(Song song);
-
-    void getAllSongsModel(String page, String pageSize);
-
-    boolean doCheckDataConnection(Context context);
 
 }

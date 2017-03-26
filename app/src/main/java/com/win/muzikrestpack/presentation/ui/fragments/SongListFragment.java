@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,7 @@ import butterknife.ButterKnife;
  * Created by win on 3/25/17.
  */
 
-public class SongListFragment extends Fragment implements SongListPresenter.View,AdapterView.OnItemClickListener {
+public class SongListFragment extends Fragment implements SongListPresenter.View, AdapterView.OnItemClickListener {
     @BindView(R.id.rvSongList)
     RecyclerView mSongListRecyclerView;
 
@@ -72,9 +71,8 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
                 MainThreadImpl.getInstance(), this, songDataRepository);
 
 
-
         if (mSongListPresenter.doCheckDataConnection(this.getActivity())) {
-            mSongListPresenter.getAllSongsModel("1", "3");
+//            mSongListPresenter.getAllSongsModel("1", "3");
             fillRecyclerView();
         }
 
@@ -124,7 +122,7 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
     @Override
     public void onProceedSongDetailViewActivity(Song song) {
         Intent i = new Intent(this.getActivity(), SongDetailActivity.class);
-        i.putExtra("SONG_ID",song.getId());
+        i.putExtra("SONG_ID", song.getId());
         startActivity(i);
     }
 
@@ -136,7 +134,6 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
 
     @Override
     public void hideProgress() {
-        Log.e("HIDE PROGRESS", "HIDE PROGRESS");
         mProgressView.setVisibility(View.GONE);
         mSongListRecyclerView.setVisibility(View.VISIBLE);
 
@@ -160,6 +157,6 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-            mSongListPresenter.onItemClicked(mSongList.get(i));
+        mSongListPresenter.onItemClicked(mSongList.get(i));
     }
 }

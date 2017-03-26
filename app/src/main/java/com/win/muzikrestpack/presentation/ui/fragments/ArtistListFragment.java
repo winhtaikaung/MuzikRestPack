@@ -1,11 +1,11 @@
 package com.win.muzikrestpack.presentation.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +21,7 @@ import com.win.muzikrestpack.domain.executor.impl.ThreadExecutor;
 import com.win.muzikrestpack.domain.model.Artist;
 import com.win.muzikrestpack.presentation.presenters.ArtistListPresenter;
 import com.win.muzikrestpack.presentation.presenters.impl.ArtistListPresenterImpl;
+import com.win.muzikrestpack.presentation.ui.activities.ArtistDetailActivity;
 import com.win.muzikrestpack.presentation.ui.adapters.ArtistListAdapter;
 import com.win.muzikrestpack.presentation.ui.base.EndlessRecyclerViewAdapter;
 import com.win.muzikrestpack.threading.MainThreadImpl;
@@ -34,7 +35,7 @@ import butterknife.ButterKnife;
  * Created by win on 3/25/17.
  */
 
-public class ArtistListFragment extends Fragment implements ArtistListPresenter.View {
+public class ArtistListFragment extends Fragment implements ArtistListPresenter.View, AdapterView.OnItemClickListener {
     @BindView(R.id.rvArtistList)
     RecyclerView mArtistListRecyclerview;
 
@@ -47,7 +48,7 @@ public class ArtistListFragment extends Fragment implements ArtistListPresenter.
     @BindView(R.id.tvErrorText)
     TextView tvErrorText;
 
-    private List<Artist> mSongList;
+    private List<Artist> mArtistList;
     private ArtistListPresenter mArtistListPresenter;
     private ArtistDataRepository mArtistDataRepository;
     private ArtistDataStoreFactory mArtistDataStoreFactory;
@@ -78,13 +79,7 @@ public class ArtistListFragment extends Fragment implements ArtistListPresenter.
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
         mArtistListRecyclerview.setLayoutManager(linearLayoutManager);
         mArtistListAdapter = new ArtistListAdapter();
-        mArtistListAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
-
+        mArtistListAdapter.setOnItemClickListener(this);
         mEndlessRecyclerViewAdapter = new EndlessRecyclerViewAdapter(this.getActivity(), mArtistListAdapter, new EndlessRecyclerViewAdapter.RequestToLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
@@ -104,13 +99,13 @@ public class ArtistListFragment extends Fragment implements ArtistListPresenter.
     public void onArtistModelRetrieved(List<Artist> artistList) {
         if (artistList.size() > 0) {
             if (mCounter == 1) {
-                mSongList = artistList;
+                this.mArtistList = artistList;
             } else {
 
-                mSongList.addAll(artistList);
+                this.mArtistList.addAll(artistList);
 
             }
-            mArtistListAdapter.setSongList(mSongList);
+            mArtistListAdapter.setSongList(this.mArtistList);
             mEndlessRecyclerViewAdapter.onDataReady(true);
             mCounter++;
 
@@ -127,7 +122,6 @@ public class ArtistListFragment extends Fragment implements ArtistListPresenter.
 
     @Override
     public void hideProgress() {
-        Log.e("HIDE PROGRESS", "HIDE PROGRESS");
         mProgressView.setVisibility(View.GONE);
         mArtistListRecyclerview.setVisibility(View.VISIBLE);
     }
@@ -146,5 +140,12 @@ public class ArtistListFragment extends Fragment implements ArtistListPresenter.
         mArtistListRecyclerview.setVisibility(View.VISIBLE);
         tvErrorText.setText(message);
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(this.getActivity(), ArtistDetailActivity.class);
+        intent.putExtra("ARTIST_ID", mArtistList.get(i).getId());
+        startActivity(intent);
     }
 }

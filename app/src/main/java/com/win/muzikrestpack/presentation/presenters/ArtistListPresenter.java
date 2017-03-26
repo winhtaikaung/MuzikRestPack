@@ -12,11 +12,11 @@ import java.util.List;
  */
 
 public interface ArtistListPresenter {
-    interface View extends BaseView {
-        void onArtistModelRetrieved(List<Artist> artistList);
-    }
-
     void getAllArtistModel(String page, String pageSize);
 
     boolean doCheckDataConnection(Context context);
+
+    interface View extends BaseView {
+        void onArtistModelRetrieved(List<Artist> artistList);
+    }
 }
