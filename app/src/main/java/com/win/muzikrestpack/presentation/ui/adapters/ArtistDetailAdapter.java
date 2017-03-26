@@ -12,11 +12,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.win.muzikrestpack.R;
 import com.win.muzikrestpack.domain.model.Artist;
-import com.win.muzikrestpack.domain.model.Links;
 import com.win.muzikrestpack.domain.model.Song;
 import com.win.muzikrestpack.presentation.ui.base.SectionView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -91,20 +89,7 @@ public class ArtistDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
-    private List<Song> dummySongList() {
-        Song dummySongfirst = new Song("1", "Mona", "http://ab.com", new Links("1", "1")
-        );
-        Song dummySongsecond = new Song("1", "Mona", "http://ab.com", new Links("2", "2")
-        );
-        Song dummySongthird = new Song("1", "Mona", "http://ab.com", new Links("3", "3")
-        );
 
-        List<Song> dummySongList = new ArrayList<>();
-        dummySongList.add(dummySongfirst);
-        dummySongList.add(dummySongsecond);
-        dummySongList.add(dummySongthird);
-        return dummySongList;
-    }
 
     @Override
     public int getItemCount() {

@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.ui.activities.MainActivity">
+        <activity
+            android:name=".presentation.ui.activities.MainActivity"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,14 +24,16 @@
         </activity>
         <activity
             android:name=".presentation.ui.activities.SongDetailActivity"
-            android:parentActivityName=".presentation.ui.activities.MainActivity">
+            android:parentActivityName=".presentation.ui.activities.MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.win.muzikrestpack.presentation.ui.activities.MainActivity" />
         </activity>
         <activity
             android:name=".presentation.ui.activities.ArtistDetailActivity"
-            android:parentActivityName=".presentation.ui.activities.MainActivity">
+            android:parentActivityName=".presentation.ui.activities.MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.win.muzikrestpack.presentation.ui.activities.MainActivity" />

@@ -105,7 +105,7 @@ public class ArtistListFragment extends Fragment implements ArtistListPresenter.
                 this.mArtistList.addAll(artistList);
 
             }
-            mArtistListAdapter.setSongList(this.mArtistList);
+            mArtistListAdapter.setmArtistList(this.mArtistList);
             mEndlessRecyclerViewAdapter.onDataReady(true);
             mCounter++;
 
