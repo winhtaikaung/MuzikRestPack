@@ -11,7 +11,7 @@
         android:layout_gravity="center">
         <include layout="@layout/item_loading" />
     </FrameLayout>
-
+    <include layout="@layout/error_view"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvSongList"
         android:layout_width="match_parent"

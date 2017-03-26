@@ -23,7 +23,7 @@ public class ArtistCloudDataStoreUnitTest {
 //        artistCloudDataStore = new ArtistCloudDataStore();
 //
 //
-//        artistCloudDataStore.getArtistModel("1", "1");
+//        artistCloudDataStore.getAllArtistModel("1", "1");
 
 
     }

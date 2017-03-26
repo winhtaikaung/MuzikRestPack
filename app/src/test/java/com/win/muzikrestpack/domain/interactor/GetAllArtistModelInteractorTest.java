@@ -1,5 +1,17 @@
 package com.win.muzikrestpack.domain.interactor;
 
+import com.win.muzikrestpack.domain.executor.Executor;
+import com.win.muzikrestpack.domain.executor.MainThread;
+import com.win.muzikrestpack.domain.interactors.GetAllArtistModelInteractor;
+import com.win.muzikrestpack.domain.interactors.impl.Artist.GetAllArtistModelInteractorImpl;
+import com.win.muzikrestpack.domain.model.Artist;
+import com.win.muzikrestpack.domain.model.ArtistModel;
+import com.win.muzikrestpack.domain.model.Artists;
+import com.win.muzikrestpack.domain.model.ArtistsAlbums;
+import com.win.muzikrestpack.domain.model.ArtistsSongs;
+import com.win.muzikrestpack.domain.model.Links;
+import com.win.muzikrestpack.domain.model.Meta;
+import com.win.muzikrestpack.domain.repository.ArtistRepository;
 import com.win.muzikrestpack.threading.TestMainThread;
 
 import org.junit.Before;
@@ -11,21 +23,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.win.muzikrestpack.domain.executor.Executor;
-import com.win.muzikrestpack.domain.executor.MainThread;
-import com.win.muzikrestpack.domain.interactors.GetArtistModelInteractor;
-import com.win.muzikrestpack.domain.interactors.impl.Artist.GetArtistModelInteractorImpl;
-import com.win.muzikrestpack.domain.repository.ArtistRepository;
-
 import io.reactivex.Observable;
-
-import com.win.muzikrestpack.domain.model.Artist;
-import com.win.muzikrestpack.domain.model.ArtistModel;
-import com.win.muzikrestpack.domain.model.Artists;
-import com.win.muzikrestpack.domain.model.ArtistsAlbums;
-import com.win.muzikrestpack.domain.model.ArtistsSongs;
-import com.win.muzikrestpack.domain.model.Links;
-import com.win.muzikrestpack.domain.model.Meta;
 
 import static org.mockito.Mockito.when;
 
@@ -33,7 +31,7 @@ import static org.mockito.Mockito.when;
  * Created by winhtaikaung on 20/3/17.
  */
 
-public class GetArtistModelInteractorTest {
+public class GetAllArtistModelInteractorTest {
 
     private MainThread mMainThread;
     @Mock
@@ -41,7 +39,7 @@ public class GetArtistModelInteractorTest {
     @Mock
     private ArtistRepository mArtistRepository;
     @Mock
-    private GetArtistModelInteractor.Callback mMockedCallback;
+    private GetAllArtistModelInteractor.Callback mMockedCallback;
 
     @Before
     public void setUp() throws Exception {
@@ -71,12 +69,12 @@ public class GetArtistModelInteractorTest {
 
         Observable<ArtistModel> dummyArtistModel = Observable.just(dummyModel);
 
-        when(mArtistRepository.getArtistModel(String.valueOf(1), dummyArtistfirst.getId()))
+        when(mArtistRepository.getAllArtistModel(String.valueOf(1), dummyArtistfirst.getId()))
                 .thenReturn(dummyArtistModel);
 
-        GetArtistModelInteractorImpl interactor = new GetArtistModelInteractorImpl(mExecutor, mMainThread, mArtistRepository, "1", dummyArtistfirst.getId(), mMockedCallback);
+        GetAllArtistModelInteractorImpl interactor = new GetAllArtistModelInteractorImpl(mExecutor, mMainThread, mArtistRepository, "1", dummyArtistfirst.getId(), mMockedCallback);
         interactor.run();
-        Mockito.verify(mArtistRepository).getArtistModel(String.valueOf(1), dummyArtistfirst.getId());
+        Mockito.verify(mArtistRepository).getAllArtistModel(String.valueOf(1), dummyArtistfirst.getId());
         Mockito.verifyNoMoreInteractions(mArtistRepository);
         Mockito.verify(mMockedCallback).onArtistModelRetrieved(dummyArtistModel);
 

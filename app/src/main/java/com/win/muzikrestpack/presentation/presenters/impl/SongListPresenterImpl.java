@@ -1,5 +1,7 @@
 package com.win.muzikrestpack.presentation.presenters.impl;
 
+import android.content.Context;
+
 import com.win.muzikrestpack.domain.executor.Executor;
 import com.win.muzikrestpack.domain.executor.MainThread;
 import com.win.muzikrestpack.domain.interactors.GetAllSongModelInteractor;
@@ -8,6 +10,7 @@ import com.win.muzikrestpack.domain.model.SongModel;
 import com.win.muzikrestpack.domain.repository.SongRepository;
 import com.win.muzikrestpack.presentation.presenters.AbstractPresenter;
 import com.win.muzikrestpack.presentation.presenters.SongListPresenter;
+import com.win.muzikrestpack.presentation.utils.ConnectionHelper;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
@@ -21,6 +24,13 @@ public class SongListPresenterImpl extends AbstractPresenter implements SongList
     private SongListPresenter.View mView;
     private SongRepository mSongRepository;
 
+    /**
+     *
+     * @param executor
+     * @param mainThread
+     * @param view
+     * @param songRepository
+     */
     public SongListPresenterImpl(Executor executor, MainThread mainThread,View view, SongRepository songRepository) {
         super(executor, mainThread);
         mView = view;
@@ -36,6 +46,17 @@ public class SongListPresenterImpl extends AbstractPresenter implements SongList
     }
 
     @Override
+    public boolean doCheckDataConnection(Context context) {
+        if(!ConnectionHelper.isOnline(context)){
+            mView.showError("Cannot connect to server");
+            return false;
+        }else{
+            mView.hideError("");
+            return true;
+        }
+    }
+
+    @Override
     public void onAllSongModelRetrieved(final Observable<SongModel> songModelObservable) {
 
 
@@ -48,12 +69,12 @@ public class SongListPresenterImpl extends AbstractPresenter implements SongList
             @Override
             public void accept(SongModel songModel) throws Exception {
                 mView.onAllSongModelRetrieved(songModel.getSongs());
-
             }
 
 
         });
         mView.hideProgress();
+        mView.hideError("");
     }
 
     @Override

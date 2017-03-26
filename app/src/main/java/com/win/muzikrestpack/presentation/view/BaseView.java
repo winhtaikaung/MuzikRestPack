@@ -1,7 +1,7 @@
 package com.win.muzikrestpack.presentation.view;
 
 /**
- * Created by dmilicic on 7/28/15.
+ * Created by win on 3/25/17
  * <p/>
  * This interface represents a basic view. All views should implement these common methods.
  */
@@ -24,4 +24,12 @@ public interface BaseView {
      * @param message The error message to be dislayed.
      */
     void showError(String message);
+
+
+    /**
+     * This method is used for hiding error messages on the UI.
+     *
+     * @param message The error message to be dislayed.
+     */
+    void hideError(String message);
 }

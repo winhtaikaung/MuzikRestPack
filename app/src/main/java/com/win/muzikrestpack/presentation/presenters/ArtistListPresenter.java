@@ -2,7 +2,7 @@ package com.win.muzikrestpack.presentation.presenters;
 
 import android.content.Context;
 
-import com.win.muzikrestpack.domain.model.Song;
+import com.win.muzikrestpack.domain.model.Artist;
 import com.win.muzikrestpack.presentation.view.BaseView;
 
 import java.util.List;
@@ -11,14 +11,12 @@ import java.util.List;
  * Created by win on 3/26/17.
  */
 
-public interface SongListPresenter {
+public interface ArtistListPresenter {
     interface View extends BaseView {
-
-        void onAllSongModelRetrieved(List<Song> songModelObservable);
+        void onArtistModelRetrieved(List<Artist> artistList);
     }
 
-    void getAllSongsModel(String page,String pageSize);
+    void getAllArtistModel(String page,String pageSize);
 
     boolean doCheckDataConnection(Context context);
-
 }
