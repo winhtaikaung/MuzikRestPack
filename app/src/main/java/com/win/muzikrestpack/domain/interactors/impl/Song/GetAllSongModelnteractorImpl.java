@@ -21,6 +21,15 @@ public class GetAllSongModelnteractorImpl extends AbstractInteractor implements 
     private String page;
     private String pageSize;
 
+    /**
+     *
+     * @param threadExecutor
+     * @param mainThread
+     * @param songRepository
+     * @param page
+     * @param pagesize
+     * @param callback
+     */
     public GetAllSongModelnteractorImpl(Executor threadExecutor, MainThread mainThread,
                                         SongRepository songRepository, String page, String pagesize,
                                         Callback callback) {

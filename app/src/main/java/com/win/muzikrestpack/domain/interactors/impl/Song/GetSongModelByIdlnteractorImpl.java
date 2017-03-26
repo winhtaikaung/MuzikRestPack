@@ -20,6 +20,14 @@ public class GetSongModelByIdlnteractorImpl extends AbstractInteractor implement
 
     private String songId;
 
+    /**
+     *
+     * @param threadExecutor
+     * @param mainThread
+     * @param songRepository
+     * @param songId
+     * @param callback
+     */
     public GetSongModelByIdlnteractorImpl(Executor threadExecutor, MainThread mainThread,
                                           SongRepository songRepository, String songId,
                                           Callback callback) {

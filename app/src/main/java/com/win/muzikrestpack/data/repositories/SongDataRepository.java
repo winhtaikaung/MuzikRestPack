@@ -17,6 +17,11 @@ public class SongDataRepository implements SongRepository {
     private final RESTSongModelConverter restSongModelConverter;
     private final SongDataStoreFactory songDataStoreFactory;
 
+    /**
+     *
+     * @param songDataStoreFactory
+     * @param restSongModelConverter
+     */
     public SongDataRepository(SongDataStoreFactory songDataStoreFactory, RESTSongModelConverter restSongModelConverter) {
         this.restSongModelConverter = restSongModelConverter;
         this.songDataStoreFactory = songDataStoreFactory;

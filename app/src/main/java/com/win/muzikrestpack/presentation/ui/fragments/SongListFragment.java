@@ -72,7 +72,6 @@ public class SongListFragment extends Fragment implements SongListPresenter.View
 
 
         if (mSongListPresenter.doCheckDataConnection(this.getActivity())) {
-//            mSongListPresenter.getAllSongsModel("1", "3");
             fillRecyclerView();
         }
 

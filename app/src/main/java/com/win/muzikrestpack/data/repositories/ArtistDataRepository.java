@@ -19,6 +19,11 @@ public class ArtistDataRepository implements ArtistRepository {
     private final RESTArtistModelConverter restArtistModelConverter;
     private final ArtistDataStoreFactory artistDataStoreFactory;
 
+    /**
+     *
+     * @param artistDataStoreFactory
+     * @param restArtistModelConverter
+     */
     public ArtistDataRepository(ArtistDataStoreFactory artistDataStoreFactory, RESTArtistModelConverter restArtistModelConverter) {
         this.restArtistModelConverter = restArtistModelConverter;
         this.artistDataStoreFactory = artistDataStoreFactory;

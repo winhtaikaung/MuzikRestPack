@@ -15,12 +15,12 @@ public class SectionView {
     private boolean isList;
     private int orientation;
 
-//    public SectionView(List<Object> listData,boolean isList){
-//        this.listData = listData;
-//        this.isList = isList;
-//
-//    }
 
+    /**
+     *
+     * @param listData
+     * @param isList
+     */
     public SectionView(Object listData, boolean isList) {
         this.object = listData;
         this.isList = isList;

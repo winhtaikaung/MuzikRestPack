@@ -44,7 +44,7 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
 
     LinearLayoutManager layoutManager;
     ArtistDetailAdapter mArtistDetailAdapter;
-
+    //TODO http://square.github.io/dagger/ has to utilize for dependencies injection
     private ArtistDetailPresenter mArtistDetailPresenter;
 
     private SongDataStoreFactory songDataStoreFactory;
@@ -80,18 +80,31 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
 
         mArtistDetailPresenter.getArtistModel(artistId);
         mArtistDetailPresenter.getSongModelByArtistId("1", artistId);
-
-
         layoutManager = new LinearLayoutManager(this);
 
 
     }
 
     @Override
-    public void onArtistModelRetrieved(Artist artist) {
+    public void onArtistModelRetrieved(final Artist artist) {
         Log.e("ARTIST_DETAIL", artist.getName());
         sectionList.add(new SectionView(artist, false));
 
+        //Observing Sections items
+        Observable<List<SectionView>> observer = Observable.just(sectionList);
+        observer.subscribe(new Consumer<List<SectionView>>() {
+            @Override
+            public void accept(List<SectionView> sectionViewList) throws Exception {
+                if (sectionViewList.size() == 2) {
+                    getSupportActionBar().setTitle(artist.getName());
+                    mArtistDetailAdapter = new ArtistDetailAdapter(sectionList);
+                    mDetailRecyclerView.setLayoutManager(layoutManager);
+
+                    mDetailRecyclerView.setAdapter(mArtistDetailAdapter);
+                    mDetailRecyclerView.getLayoutManager().scrollToPosition(0);
+                }
+            }
+        });
 
     }
 
@@ -99,7 +112,7 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
     public void onSongListRetrieved(List<Song> songList) {
         Log.e("ARTIST_DETAIL", String.valueOf(songList.size()));
         sectionList.add(new SectionView(songList, true));
-
+        //Observing Sections items
         Observable<List<SectionView>> observer = Observable.just(sectionList);
         observer.subscribe(new Consumer<List<SectionView>>() {
             @Override

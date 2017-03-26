@@ -21,6 +21,15 @@ public class GetSongModelByArtistIdInteractorImpl extends AbstractInteractor imp
     private String page;
     private String artistId;
 
+    /**
+     *
+     * @param threadExecutor
+     * @param mainThread
+     * @param songRepository
+     * @param page
+     * @param artistId
+     * @param callback
+     */
     public GetSongModelByArtistIdInteractorImpl(Executor threadExecutor, MainThread mainThread,
                                                 SongRepository songRepository, String page, String artistId,
                                                 GetSongModelByArtistIdInteractor.Callback callback) {

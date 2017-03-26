@@ -25,6 +25,11 @@ import java.util.List;
 
 public class RESTArtistModelConverter {
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     public ArtistModel convertToArtistModel(RESTArtistModel model) {
 
 
