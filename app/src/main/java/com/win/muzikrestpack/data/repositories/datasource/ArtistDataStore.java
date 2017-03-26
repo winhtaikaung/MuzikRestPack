@@ -1,9 +1,6 @@
 package com.win.muzikrestpack.data.repositories.datasource;
 
-import com.win.muzikrestpack.data.network.model.RESTArtist;
 import com.win.muzikrestpack.data.network.model.RESTArtistModel;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -13,9 +10,7 @@ import io.reactivex.Observable;
 
 public interface ArtistDataStore {
 
-    Observable<RESTArtist> getArtist();
-
-    Observable<List<RESTArtist>> getArtists();
+    Observable<RESTArtistModel> getArtist(String artistId);
 
     Observable<RESTArtistModel> getArtistModel(String page, String artistId);
 }

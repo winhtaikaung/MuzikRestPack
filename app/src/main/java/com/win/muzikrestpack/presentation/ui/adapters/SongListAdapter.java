@@ -47,7 +47,6 @@ public class SongListAdapter extends BaseAdapter<BaseAdapter.BaseViewHolder> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
 
     }
-
     @Override
     public int getItemCount() {
         return mSongList != null ? mSongList.size() : 0;
@@ -64,4 +63,6 @@ public class SongListAdapter extends BaseAdapter<BaseAdapter.BaseViewHolder> {
             mAdapter = adapter;
         }
     }
+
+
 }

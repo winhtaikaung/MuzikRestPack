@@ -3,11 +3,8 @@ package com.win.muzikrestpack.data.repositories;
 import com.win.muzikrestpack.data.network.converter.RESTArtistModelConverter;
 import com.win.muzikrestpack.data.network.model.RESTArtistModel;
 import com.win.muzikrestpack.data.repositories.datasource.ArtistDataStoreFactory;
-import com.win.muzikrestpack.domain.model.Artist;
 import com.win.muzikrestpack.domain.model.ArtistModel;
 import com.win.muzikrestpack.domain.repository.ArtistRepository;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
@@ -27,15 +24,18 @@ public class ArtistDataRepository implements ArtistRepository {
         this.artistDataStoreFactory = artistDataStoreFactory;
     }
 
-    @Override
-    public Observable<Artist> getArtist() {
-        return null;
-    }
 
     @Override
-    public Observable<List<Artist>> getArtists() {
-        return null;
+    public Observable<ArtistModel> getArtist(String artistId) {
+        return artistDataStoreFactory.create().getArtist(artistId).map(new Function<RESTArtistModel, ArtistModel>() {
+            @Override
+            public ArtistModel apply(RESTArtistModel restArtistModel) throws Exception {
+                return restArtistModelConverter.convertToArtistModel(restArtistModel);
+
+            }
+        });
     }
+
 
     @Override
     public Observable<ArtistModel> getArtistModel(String page, String artistId) {

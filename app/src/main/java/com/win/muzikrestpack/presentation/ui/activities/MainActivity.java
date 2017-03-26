@@ -44,13 +44,15 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //
-//        SongDataStoreFactory songDataStoreFactory = new SongDataStoreFactory();
+//        final SongDataStoreFactory songDataStoreFactory = new SongDataStoreFactory();
 //        SongDataRepository songdataRepo = new SongDataRepository(songDataStoreFactory, new RESTSongModelConverter());
+//
 //        Observable<SongModel> songModel = songdataRepo.getSongs("1","3");
 //        songModel.subscribe(new Consumer<SongModel>() {
 //            @Override
 //            public void accept(SongModel songModel) throws Exception {
-//                Log.e("SONGdata", String.valueOf(songModel.getSongs().size()));
+//                GetAllSongModelnteractorImpl interactor = new GetAllSongModelnteractorImpl(ThreadExecutor.getInstance()
+//                        , MainThreadImpl.getInstance(),new SongDataRepository(songDataStoreFactory,new RESTSongModelConverter()) , "1","2" , GetAllSongModelInteractor.Callback)
 //            }
 //        });
 

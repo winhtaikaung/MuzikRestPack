@@ -8,9 +8,9 @@ import io.reactivex.Observable;
  * Created by winhtaikaung on 20/3/17.
  */
 
-public interface GetArtistModelInteractor {
+public interface GetArtistModelByIdInteractor {
     interface Callback {
-        void onArtistModelRetrieved(Observable<ArtistModel> artistModel);
+        void onArtistModelByIdRetrieved(Observable<ArtistModel> artistModel);
 
     }
 }
