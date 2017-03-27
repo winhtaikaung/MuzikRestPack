@@ -31,6 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 
 public class ArtistDetailActivity extends AppCompatActivity implements ArtistDetailPresenter.View {
@@ -44,6 +45,9 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
 
     LinearLayoutManager layoutManager;
     ArtistDetailAdapter mArtistDetailAdapter;
+
+    Observable<Artist> mObservableArtist;
+    Observable<List<Song>> mObservableListSong;
     //TODO http://square.github.io/dagger/ has to utilize for dependencies injection
     private ArtistDetailPresenter mArtistDetailPresenter;
 
@@ -78,7 +82,11 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
         Intent intent = getIntent();
         final String artistId = TextUtils.isEmpty(intent.getStringExtra("ARTIST_ID")) ? "1" : intent.getStringExtra("ARTIST_ID");
         fetchDataByMessagingThread(artistId);
+
         layoutManager = new LinearLayoutManager(this);
+
+
+
 
 
     }
@@ -86,63 +94,47 @@ public class ArtistDetailActivity extends AppCompatActivity implements ArtistDet
     @Override
     public void onArtistModelRetrieved(final Artist artist) {
         Log.e("ARTIST_DETAIL", artist.getName());
-        sectionList.add(new SectionView(artist, false));
         getSupportActionBar().setTitle(artist.getName());
+        mObservableArtist = Observable.just(artist);
         //Observing Sections items
-        Observable<List<SectionView>> observer = Observable.just(sectionList);
-        observer.subscribe(new Consumer<List<SectionView>>() {
-            @Override
-            public void accept(List<SectionView> sectionViewList) throws Exception {
-                if (sectionViewList.size() == 2) {
-
-                    getSupportActionBar().setTitle(artist.getName());
-                    mArtistDetailAdapter = new ArtistDetailAdapter(sectionList);
-                    mDetailRecyclerView.setLayoutManager(layoutManager);
-
-                    mDetailRecyclerView.setAdapter(mArtistDetailAdapter);
-                    mDetailRecyclerView.getLayoutManager().scrollToPosition(0);
-                }
-            }
-        });
+        mArtistDetailPresenter.getSongModelByArtistId("1", artist.getId());
 
     }
 
     @Override
     public void onSongListRetrieved(List<Song> songList) {
         Log.e("ARTIST_DETAIL", String.valueOf(songList.size()));
-        sectionList.add(new SectionView(songList, true));
         //Observing Sections items
-        Observable<List<SectionView>> observer = Observable.just(sectionList);
-        observer.subscribe(new Consumer<List<SectionView>>() {
+        mObservableListSong = Observable.just(songList);
+        Observable<List<SectionView>> sectionListObservable = Observable.zip(mObservableArtist, mObservableListSong, new BiFunction<Artist, List<Song>, List<SectionView>>() {
+            @Override
+            public List<SectionView> apply(Artist artist, List<Song> songs) throws Exception {
+                sectionList.add(new SectionView(artist, false));
+                sectionList.add(new SectionView(songs, false));
+                Log.e("SECTION_VIEW", artist.getName() + "-------" + songs.get(0).getTitle());
+                return sectionList;
+            }
+        });
+
+        sectionListObservable.subscribe(new Consumer<List<SectionView>>() {
             @Override
             public void accept(List<SectionView> sectionViewList) throws Exception {
-                if (sectionViewList.size() == 2) {
-                    mArtistDetailAdapter = new ArtistDetailAdapter(sectionList);
-                    mDetailRecyclerView.setLayoutManager(layoutManager);
+                mArtistDetailAdapter = new ArtistDetailAdapter(sectionViewList);
+                mDetailRecyclerView.setLayoutManager(layoutManager);
 
-                    mDetailRecyclerView.setAdapter(mArtistDetailAdapter);
-                    mDetailRecyclerView.getLayoutManager().scrollToPosition(0);
-                }
+                mDetailRecyclerView.setAdapter(mArtistDetailAdapter);
+                mDetailRecyclerView.getLayoutManager().scrollToPosition(0);
+                Log.e("SECTION_VIEW", String.valueOf(sectionViewList.size()));
             }
         });
 
     }
 
     void fetchDataByMessagingThread(final String artistId) {
-        final Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                mArtistDetailPresenter.getArtistModel(artistId);
-                Runnable runnable1 = new Runnable() {
-                    @Override
-                    public void run() {
-                        mArtistDetailPresenter.getSongModelByArtistId("1", artistId);
-                    }
-                };
-                new Thread(runnable1).start();
-            }
-        };
-        new Thread(runnable).start();
+        mArtistDetailPresenter.getArtistModel(artistId);
+
+
+
     }
 
 
